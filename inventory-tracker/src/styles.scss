@@ -1,0 +1,713 @@
+
+// Angular Material theming
+@use '@angular/material' as mat;
+
+// Import Google Fonts - Inter (clean, modern, professional)
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$violet-palette,
+    ),
+    typography: Inter,
+    density: 0,
+  ));
+}
+
+// ========================================
+// CSS Custom Properties - Light Mode (Default)
+// ========================================
+:root {
+  // Brand Colors - Purple Theme (matching login/register)
+  --primary-50: #f5f3ff;
+  --primary-100: #ede9fe;
+  --primary-200: #ddd6fe;
+  --primary-300: #c4b5fd;
+  --primary-400: #a78bfa;
+  --primary-500: #8b5cf6;
+  --primary-600: #7c3aed;
+  --primary-700: #6d28d9;
+  --primary-800: #5b21b6;
+  --primary-900: #4c1d95;
+  
+  --primary-color: #7c3aed;
+  --primary-dark: #6d28d9;
+  --primary-light: #8b5cf6;
+  --primary-hover: #5b21b6;
+  
+  // Gradient - matching login/register
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+  // Neutral Colors
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  
+  // Semantic Backgrounds
+  --bg-body: #f9fafb;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f4f6;
+  --bg-tertiary: #e5e7eb;
+  --bg-elevated: #ffffff;
+  --card-bg: #ffffff;
+  
+  // Text Colors
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary: #9ca3af;
+  --text-muted: #6b7280;
+  --text-inverse: #ffffff;
+  
+  // Border Colors
+  --border-color: #e5e7eb;
+  --border-light: #f3f4f6;
+  --border-dark: #d1d5db;
+  --border-focus: #2563eb;
+  
+  // Shadows - Refined for light mode
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  
+  // Status Colors - Professional palette
+  --success-50: #ecfdf5;
+  --success-100: #d1fae5;
+  --success-500: #10b981;
+  --success-600: #059669;
+  --success-700: #047857;
+  
+  --warning-50: #fffbeb;
+  --warning-100: #fef3c7;
+  --warning-500: #f59e0b;
+  --warning-600: #d97706;
+  --warning-700: #b45309;
+  
+  --error-50: #fef2f2;
+  --error-100: #fee2e2;
+  --error-500: #ef4444;
+  --error-600: #dc2626;
+  --error-700: #b91c1c;
+  
+  --info-50: #eff6ff;
+  --info-100: #dbeafe;
+  --info-500: #3b82f6;
+  --info-600: #2563eb;
+  
+  // Stock Status
+  --stock-critical: #dc2626;
+  --stock-critical-bg: #fef2f2;
+  --stock-low: #d97706;
+  --stock-low-bg: #fffbeb;
+  --stock-sufficient: #059669;
+  --stock-sufficient-bg: #ecfdf5;
+  
+  // Component specific
+  --header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --header-text: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --input-focus-border: #7c3aed;
+  --button-primary-bg: #7c3aed;
+  --button-primary-hover: #6d28d9;
+  
+  // Spacing
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+  
+  // Transitions
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
+// ========================================
+// Base Styles
+// ========================================
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-body);
+  min-height: 100vh;
+}
+
+html, body {
+  height: 100%;
+}
+
+// ========================================
+// Typography
+// ========================================
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+// Monospace for codes/SKUs
+.mono, code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.875em;
+}
+
+// ========================================
+// Links & Buttons Base
+// ========================================
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  
+  &:hover {
+    color: var(--primary-dark);
+  }
+}
+
+button {
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+// ========================================
+// Scrollbar - Clean & Minimal
+// ========================================
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 3px;
+  
+  &:hover {
+    background: var(--gray-400);
+  }
+}
+
+// Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-300) transparent;
+}
+
+// ========================================
+// Focus States - Accessibility
+// ========================================
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// ========================================
+// Selection
+// ========================================
+::selection {
+  background-color: var(--primary-100);
+  color: var(--primary-800);
+}
+
+// ========================================
+// Angular Material Overrides
+// ========================================
+
+// Cards
+.mat-mdc-card {
+  --mdc-elevated-card-container-color: var(--card-bg);
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-card) !important;
+  border: 1px solid var(--border-color);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+  
+  &:hover {
+    box-shadow: var(--shadow-card-hover) !important;
+  }
+}
+
+// Buttons
+.mat-mdc-button, .mat-mdc-outlined-button {
+  border-radius: var(--radius-md) !important;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.mat-mdc-raised-button, .mat-mdc-flat-button, .mat-mdc-unelevated-button {
+  border-radius: var(--radius-md) !important;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  
+  &.mat-primary {
+    --mdc-filled-button-container-color: #7c3aed;
+    
+    &:hover {
+      --mdc-filled-button-container-color: #6d28d9;
+    }
+  }
+}
+
+.mat-mdc-icon-button {
+  --mdc-icon-button-state-layer-size: 40px;
+  border-radius: var(--radius-md) !important;
+}
+
+// Form Fields
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-outline-color: var(--input-border);
+  --mdc-outlined-text-field-focus-outline-color: var(--input-focus-border);
+  --mdc-outlined-text-field-hover-outline-color: var(--gray-400);
+  --mdc-outlined-text-field-container-shape: var(--radius-md);
+  
+  .mat-mdc-text-field-wrapper {
+    background-color: var(--input-bg);
+  }
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  font-size: 0.75rem;
+}
+
+// Select
+.mat-mdc-select {
+  font-family: 'Inter', sans-serif;
+}
+
+.mat-mdc-option {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+}
+
+// Dialog
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-shape: var(--radius-xl);
+  --mdc-dialog-container-color: var(--bg-primary);
+}
+
+.mat-mdc-dialog-surface {
+  padding: 0 !important;
+}
+
+// Snackbar
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-shape: var(--radius-md);
+  
+  &.success-snackbar {
+    --mdc-snackbar-container-color: var(--success-600);
+    --mat-snack-bar-button-color: #ffffff;
+  }
+  
+  &.error-snackbar {
+    --mdc-snackbar-container-color: var(--error-600);
+    --mat-snack-bar-button-color: #ffffff;
+  }
+  
+  &.shortcut-snackbar {
+    --mdc-snackbar-container-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    
+    .mdc-snackbar__surface {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    }
+    
+    .mat-mdc-snack-bar-label {
+      color: #ffffff;
+      font-weight: 500;
+    }
+  }
+}
+
+// Table
+.mat-mdc-table {
+  --mat-table-background-color: var(--bg-primary);
+  
+  .mat-mdc-header-cell {
+    background-color: var(--bg-secondary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+  }
+  
+  .mat-mdc-cell {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    border-bottom-color: var(--border-color);
+  }
+  
+  .mat-mdc-row:hover {
+    background-color: var(--bg-secondary);
+  }
+}
+
+// Paginator
+.mat-mdc-paginator {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+// Chips
+.mat-mdc-chip {
+  border-radius: var(--radius-full) !important;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+// Tooltip
+.mat-mdc-tooltip {
+  --mdc-plain-tooltip-container-color: var(--gray-800);
+  --mdc-plain-tooltip-container-shape: var(--radius-sm);
+  font-size: 0.75rem;
+}
+
+// Progress Spinner
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #7c3aed;
+}
+
+// Menu
+.mat-mdc-menu-panel {
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.mat-mdc-menu-item {
+  font-size: 0.875rem;
+  min-height: 40px;
+}
+
+// ========================================
+// Utility Classes
+// ========================================
+.text-primary { color: var(--text-primary) !important; }
+.text-secondary { color: var(--text-secondary) !important; }
+.text-muted { color: var(--text-muted) !important; }
+.text-success { color: var(--success-600) !important; }
+.text-warning { color: var(--warning-600) !important; }
+.text-error { color: var(--error-600) !important; }
+
+.bg-primary { background-color: var(--bg-primary) !important; }
+.bg-secondary { background-color: var(--bg-secondary) !important; }
+
+.font-medium { font-weight: 500 !important; }
+.font-semibold { font-weight: 600 !important; }
+.font-bold { font-weight: 700 !important; }
+
+// ========================================
+// Animation Keyframes
+// ========================================
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-base);
+}
+
+.animate-slide-up {
+  animation: slideUp var(--transition-slow);
+}
+
+// ========================================
+// Dark Theme
+// ========================================
+body.dark-theme {
+  --bg-body: #0f0f0f;
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #252525;
+  --bg-tertiary: #303030;
+  --bg-elevated: #1f1f1f;
+  --card-bg: #1a1a1a;
+  
+  --text-primary: #f5f5f5;
+  --text-secondary: #a3a3a3;
+  --text-tertiary: #737373;
+  --text-muted: #8c8c8c;
+  
+  --border-color: #303030;
+  --border-light: #252525;
+  --border-dark: #404040;
+  
+  --gray-50: #171717;
+  --gray-100: #252525;
+  --gray-200: #303030;
+  --gray-300: #404040;
+  --gray-400: #525252;
+  --gray-500: #737373;
+  --gray-600: #a3a3a3;
+  --gray-700: #d4d4d4;
+  --gray-800: #e5e5e5;
+  --gray-900: #f5f5f5;
+  
+  --input-bg: #252525;
+  --input-border: #404040;
+  
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 10px 40px rgba(0, 0, 0, 0.5);
+  
+  --stock-critical-bg: rgba(220, 38, 38, 0.15);
+  --stock-low-bg: rgba(217, 119, 6, 0.15);
+  --stock-sufficient-bg: rgba(5, 150, 105, 0.15);
+  
+  // Material components dark overrides
+  .mat-mdc-card {
+    --mdc-elevated-card-container-color: var(--card-bg);
+    border-color: var(--border-color);
+  }
+  
+  .mat-mdc-table {
+    --mat-table-background-color: var(--bg-primary);
+    
+    .mat-mdc-header-cell {
+      background-color: var(--bg-secondary);
+      color: var(--text-secondary);
+    }
+    
+    .mat-mdc-cell {
+      color: var(--text-primary);
+      border-bottom-color: var(--border-color);
+    }
+    
+    .mat-mdc-row:hover {
+      background-color: var(--bg-secondary);
+    }
+  }
+  
+  .mat-mdc-paginator {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-top-color: var(--border-color);
+  }
+  
+  .mat-mdc-form-field {
+    --mdc-outlined-text-field-outline-color: var(--input-border);
+    --mdc-outlined-text-field-hover-outline-color: var(--gray-500);
+    --mdc-filled-text-field-container-color: var(--input-bg);
+    
+    .mat-mdc-text-field-wrapper {
+      background-color: var(--input-bg);
+    }
+    
+    .mdc-text-field--outlined .mdc-notched-outline__leading,
+    .mdc-text-field--outlined .mdc-notched-outline__notch,
+    .mdc-text-field--outlined .mdc-notched-outline__trailing {
+      border-color: var(--input-border);
+    }
+    
+    input, textarea {
+      color: var(--text-primary);
+    }
+    
+    .mat-mdc-form-field-label {
+      color: var(--text-secondary);
+    }
+  }
+  
+  .mat-mdc-select {
+    color: var(--text-primary);
+  }
+  
+  .mat-mdc-menu-panel {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+  }
+  
+  .mat-mdc-menu-item {
+    color: var(--text-primary);
+    
+    &:hover {
+      background-color: var(--bg-secondary);
+    }
+  }
+  
+  .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: var(--bg-primary);
+  }
+  
+  .mat-mdc-option {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    
+    &:hover {
+      background-color: var(--bg-secondary);
+    }
+  }
+  
+  ::ng-deep .mat-mdc-select-panel {
+    background: var(--bg-primary) !important;
+  }
+  
+  // Scrollbar dark theme
+  ::-webkit-scrollbar-thumb {
+    background: var(--gray-500);
+    
+    &:hover {
+      background: var(--gray-400);
+    }
+  }
+  
+  * {
+    scrollbar-color: var(--gray-500) transparent;
+  }
+}
+
+// ========================================
+// Compact View Mode
+// ========================================
+body.compact-view {
+  // Reduce font sizes
+  font-size: 0.875rem;
+  
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1.125rem; }
+  h4 { font-size: 1rem; }
+  
+  // Reduce card padding
+  .mat-mdc-card {
+    mat-card-content {
+      padding: 0.75rem !important;
+    }
+    
+    mat-card-header {
+      padding: 0.75rem 0.75rem 0 !important;
+    }
+  }
+  
+  // Smaller product cards
+  .product-card {
+    padding: 0.75rem;
+    
+    .card-image {
+      height: 120px !important;
+    }
+    
+    .card-header h3 {
+      font-size: 0.9375rem;
+    }
+  }
+  
+  // Denser table rows
+  .mat-mdc-table {
+    .mat-mdc-header-cell,
+    .mat-mdc-cell {
+      padding: 8px 12px !important;
+      font-size: 0.8125rem;
+    }
+  }
+  
+  // Smaller buttons
+  .mat-mdc-button,
+  .mat-mdc-raised-button,
+  .mat-mdc-flat-button {
+    min-height: 32px;
+    padding: 0 12px;
+    font-size: 0.8125rem;
+  }
+  
+  // Smaller form fields
+  .mat-mdc-form-field {
+    font-size: 0.875rem;
+  }
+  
+  // Reduce spacing
+  .dashboard-header,
+  .page-header {
+    padding: 1rem !important;
+  }
+  
+  .stats-grid {
+    gap: 0.75rem;
+  }
+  
+  .products-grid {
+    gap: 0.75rem;
+  }
+}

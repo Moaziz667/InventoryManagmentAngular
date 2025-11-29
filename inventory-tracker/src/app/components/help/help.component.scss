@@ -1,0 +1,332 @@
+.help-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.help-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  
+  .header-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    mat-icon {
+      font-size: 32px;
+      width: 32px;
+      height: 32px;
+      color: #fff;
+    }
+  }
+  
+  .header-text {
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    p {
+      margin: 0.25rem 0 0;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+  }
+}
+
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.help-card {
+  border-radius: 16px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  
+  mat-card-header {
+    padding: 1.25rem 1.25rem 0;
+    
+    .card-icon {
+      width: 40px !important;
+      height: 40px !important;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 20px;
+    }
+  }
+  
+  mat-card-content {
+    padding: 1.25rem;
+  }
+}
+
+// Quick Start Guide
+.quick-start-card {
+  .guide-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .guide-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    
+    .step-number {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+    }
+    
+    .step-content {
+      h4 {
+        margin: 0 0 0.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 0.9375rem;
+      }
+      
+      p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.8125rem;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+// Shortcuts Card
+.shortcuts-card {
+  .shortcuts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .shortcut-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--gray-50);
+    border-radius: 10px;
+    
+    .shortcut-keys {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      
+      kbd {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        font-family: inherit;
+      }
+      
+      span {
+        color: var(--text-muted);
+        font-size: 0.75rem;
+      }
+    }
+    
+    .shortcut-desc {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// Contact Card
+.contact-card {
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: var(--gray-50);
+    border-radius: 10px;
+    
+    mat-icon {
+      color: var(--primary-color);
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+    }
+    
+    .contact-text {
+      display: flex;
+      flex-direction: column;
+      
+      .contact-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+      
+      .contact-value {
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 0.875rem;
+        text-decoration: none;
+        
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
+    }
+  }
+}
+
+// System Card
+.system-card {
+  .system-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .info-label {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    
+    .info-value {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// FAQ Section
+.faq-section {
+  margin-top: 2rem;
+  
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 1.5rem;
+    
+    mat-icon {
+      color: var(--primary-color);
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+    }
+  }
+}
+
+.faq-accordion {
+  .mat-expansion-panel {
+    border-radius: 12px !important;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    
+    &::before {
+      display: none;
+    }
+  }
+  
+  .mat-expansion-panel-header {
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+  }
+  
+  .mat-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-primary);
+    
+    .faq-number {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+  }
+  
+  .faq-answer {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+    padding: 0 0 0.5rem 2.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .help-container {
+    padding: 1rem;
+  }
+  
+  .help-header {
+    flex-direction: column;
+    text-align: center;
+    
+    .header-text h1 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  .faq-section h2 {
+    font-size: 1.25rem;
+    justify-content: center;
+  }
+}

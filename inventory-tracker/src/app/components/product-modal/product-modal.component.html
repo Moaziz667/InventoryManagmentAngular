@@ -1,0 +1,109 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 mat-dialog-title>
+      <mat-icon>{{ isEditMode ? 'edit' : 'add_circle' }}</mat-icon>
+      {{ isEditMode ? 'Edit Product' : 'Add New Product' }}
+    </h2>
+    <button mat-icon-button (click)="onCancel()" aria-label="Close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content>
+    <form [formGroup]="productForm" class="product-form">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Product Name</mat-label>
+          <input matInput formControlName="name">
+          @if (productForm.controls['name'].touched && productForm.controls['name'].invalid) {
+            <mat-error>{{ getErrorMessage('name') }}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="form-row two-columns">
+        <mat-form-field appearance="outline">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            @for (category of categories; track category) {
+              <mat-option [value]="category">{{ category }}</mat-option>
+            }
+          </mat-select>
+          @if (productForm.controls['category'].touched && productForm.controls['category'].invalid) {
+            <mat-error>{{ getErrorMessage('category') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>SKU</mat-label>
+          <input matInput formControlName="sku">
+          <mat-hint>e.g., EL-KB-001</mat-hint>
+          @if (productForm.controls['sku'].touched && productForm.controls['sku'].invalid) {
+            <mat-error>{{ getErrorMessage('sku') }}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="form-row two-columns">
+        <mat-form-field appearance="outline">
+          <mat-label>Quantity</mat-label>
+          <input matInput type="number" formControlName="quantity" min="0">
+          @if (productForm.controls['quantity'].touched && productForm.controls['quantity'].invalid) {
+            <mat-error>{{ getErrorMessage('quantity') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Price</mat-label>
+          <span matTextPrefix>$&nbsp;</span>
+          <input matInput type="number" formControlName="price" min="0" step="0.01">
+          @if (productForm.controls['price'].touched && productForm.controls['price'].invalid) {
+            <mat-error>{{ getErrorMessage('price') }}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Supplier</mat-label>
+          <input matInput formControlName="supplier">
+          @if (productForm.controls['supplier'].touched && productForm.controls['supplier'].invalid) {
+            <mat-error>{{ getErrorMessage('supplier') }}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Image URL (Optional)</mat-label>
+          <input matInput formControlName="imageUrl" placeholder="https://example.com/image.jpg">
+          <mat-icon matPrefix>image</mat-icon>
+          <mat-hint>Paste a direct link to the product image</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Notes (Optional)</mat-label>
+          <textarea 
+            matInput 
+            formControlName="notes" 
+            rows="3">
+          </textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button 
+      mat-flat-button 
+      color="primary" 
+      (click)="onSubmit()"
+      [disabled]="productForm.invalid">
+      <mat-icon>{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+      {{ isEditMode ? 'Save Changes' : 'Add Product' }}
+    </button>
+  </mat-dialog-actions>
+</div>

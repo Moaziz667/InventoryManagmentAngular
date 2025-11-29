@@ -1,0 +1,170 @@
+<div class="help-container">
+  <!-- Header -->
+  <div class="help-header">
+    <div class="header-icon">
+      <mat-icon>help_outline</mat-icon>
+    </div>
+    <div class="header-text">
+      <h1>Help & Support</h1>
+      <p>Find answers to common questions and get help</p>
+    </div>
+  </div>
+
+  <div class="help-grid">
+    <!-- Quick Start Guide -->
+    <mat-card class="help-card quick-start-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar class="card-icon">rocket_launch</mat-icon>
+        <mat-card-title>Quick Start Guide</mat-card-title>
+        <mat-card-subtitle>Get started with InvenTrack</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Add Your Products</h4>
+              <p>Click "Add Product" on the Dashboard to create your inventory items</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Set Stock Levels</h4>
+              <p>Enter initial quantities and set minimum stock thresholds</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Monitor & Update</h4>
+              <p>Track stock levels and update quantities as inventory changes</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Review Activity</h4>
+              <p>Check the Activity page for complete stock history</p>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Keyboard Shortcuts -->
+    <mat-card class="help-card shortcuts-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar class="card-icon">keyboard</mat-icon>
+        <mat-card-title>Keyboard Shortcuts</mat-card-title>
+        <mat-card-subtitle>Speed up your workflow</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="shortcuts-list">
+          @for (shortcut of shortcuts; track shortcut.keys) {
+            <div class="shortcut-row">
+              <div class="shortcut-keys">
+                @for (key of shortcut.keys.split(' + '); track key) {
+                  <kbd>{{ key }}</kbd>
+                  @if (!$last) {
+                    <span>+</span>
+                  }
+                }
+              </div>
+              <span class="shortcut-desc">{{ shortcut.description }}</span>
+            </div>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Contact Support -->
+    <mat-card class="help-card contact-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar class="card-icon">support_agent</mat-icon>
+        <mat-card-title>Contact Support</mat-card-title>
+        <mat-card-subtitle>We're here to help</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="contact-info">
+          <div class="contact-item">
+            <mat-icon>email</mat-icon>
+            <div class="contact-text">
+              <span class="contact-label">Email Support</span>
+              <a href="mailto:{{ contactEmail }}" class="contact-value">{{ contactEmail }}</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <mat-icon>schedule</mat-icon>
+            <div class="contact-text">
+              <span class="contact-label">Response Time</span>
+              <span class="contact-value">Within 24 hours</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <mat-icon>description</mat-icon>
+            <div class="contact-text">
+              <span class="contact-label">Documentation</span>
+              <a href="#" class="contact-value">View Full Docs</a>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- System Info -->
+    <mat-card class="help-card system-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar class="card-icon">info</mat-icon>
+        <mat-card-title>System Information</mat-card-title>
+        <mat-card-subtitle>Application details</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="system-info">
+          <div class="info-row">
+            <span class="info-label">Application</span>
+            <span class="info-value">InvenTrack PRO</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Version</span>
+            <span class="info-value">2.0.0</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Framework</span>
+            <span class="info-value">Angular 20</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">UI Library</span>
+            <span class="info-value">Angular Material</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">License</span>
+            <span class="info-value">MIT</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- FAQs Section -->
+  <div class="faq-section">
+    <h2>
+      <mat-icon>quiz</mat-icon>
+      Frequently Asked Questions
+    </h2>
+    
+    <mat-accordion class="faq-accordion">
+      @for (faq of faqs; track faq.question; let i = $index) {
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="faq-number">{{ i + 1 }}</span>
+              {{ faq.question }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p class="faq-answer">{{ faq.answer }}</p>
+        </mat-expansion-panel>
+      }
+    </mat-accordion>
+  </div>
+</div>
