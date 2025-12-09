@@ -1,3 +1,16 @@
+/**
+ * APP ROOT COMPONENT
+ * 
+ * This is the main application shell that wraps all pages.
+ * It provides:
+ * - Navigation bar (top)
+ * - User menu with logout
+ * - Page content area (changes based on current route)
+ * - Footer
+ * - Dark/Light theme toggle
+ * 
+ * All pages are rendered inside <router-outlet>
+ */
 import { Component, computed, signal, HostListener } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive, Router, ChildrenOutletContexts } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +23,9 @@ import { AuthService } from './services/auth.service';
 import { CommonModule } from '@angular/common';
 import { routeAnimations } from './animations/route-animations';
 
+/**
+ * Notification interface for displaying alerts/messages
+ */
 interface Notification {
   id: number;
   title: string;

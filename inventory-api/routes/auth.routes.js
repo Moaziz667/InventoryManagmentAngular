@@ -1,3 +1,9 @@
+/**
+ * AUTHENTICATION ROUTES
+ * 
+ * Handles user login and registration with JWT tokens
+ * All endpoints validate data and return consistent JSON responses
+ */
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -6,36 +12,49 @@ const { authMiddleware } = require('../middleware/auth.middleware');
 
 const router = express.Router();
 
-// Login - Single Admin Access
+/**
+ * LOGIN ENDPOINT
+ * POST /api/auth/login
+ * 
+ * Takes email and password, validates against database
+ * Returns JWT token if valid, error if invalid
+ */
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     
-    // Validation
+    // ========== VALIDATION ==========
+    // Check that both email and password are provided
     if (!email || !password) {
       return res.status(400).json({ message: 'Email and password are required' });
     }
     
-    // Find user (admin)
+    // ========== FIND USER ==========
+    // Search database for user with this email
     const user = db.users.find(u => u.email === email);
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     
-    // Check password
+    // ========== CHECK PASSWORD ==========
+    // Use bcrypt to compare provided password with stored hash
+    // bcrypt.compare() is slow on purpose (prevents brute force attacks)
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     
-    // Generate token
+    // ========== GENERATE JWT TOKEN ==========
+    // Create a token that expires after 24 hours
+    // Token is signed with JWT_SECRET (server can verify it's real)
     const token = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN }
     );
     
-    // Return user without password
+    // ========== RETURN RESPONSE ==========
+    // Return user data (but NOT password for security)
     const { password: _, ...userWithoutPassword } = user;
     
     res.json({

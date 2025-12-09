@@ -1,14 +1,27 @@
 import { Routes } from '@angular/router';
 import { authGuard, guestGuard } from './guards/auth.guard';
 
+/**
+ * APPLICATION ROUTES
+ * 
+ * Route protection:
+ * - guestGuard: Only unauthenticated users (login page)
+ * - authGuard: Only authenticated users (dashboard, inventory, etc.)
+ * 
+ * Lazy loading: Components load only when route is accessed (improves performance)
+ * Animation data: Used for page transition animations
+ */
 export const routes: Routes = [
+  // ========== PUBLIC ROUTES ==========
   {
     path: 'login',
     loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent),
-    canActivate: [guestGuard],
+    canActivate: [guestGuard], // Only show login to non-logged-in users
     title: 'Login - Inventory Tracker',
     data: { animation: 'login' }
   },
+
+  // ========== PROTECTED ROUTES (Require Login) ==========
   {
     path: '',
     loadComponent: () => import('./components/dashboard/dashboard.component').then(m => m.DashboardComponent),
@@ -37,9 +50,11 @@ export const routes: Routes = [
     title: 'Product Details - Inventory Tracker',
     data: { animation: 'productDetail' }
   },
+
+  // ========== FALLBACK ROUTE ==========
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: '', // Redirect unknown routes to dashboard
     pathMatch: 'full'
   }
 ];
