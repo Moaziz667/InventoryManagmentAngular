@@ -1,0 +1,133 @@
+<div class="auth-container">
+  <!-- Left Side - Illustration -->
+  <div class="auth-illustration">
+    <div class="illustration-content">
+      <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+      <div class="illustration-icon">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Box/Package Icon -->
+          <rect x="40" y="60" width="120" height="100" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="3"/>
+          <path d="M40 85 L100 55 L160 85" stroke="white" stroke-width="3" fill="none"/>
+          <line x1="100" y1="55" x2="100" y2="160" stroke="white" stroke-width="3"/>
+          <line x1="40" y1="85" x2="100" y2="115" stroke="white" stroke-width="2" opacity="0.5"/>
+          <line x1="160" y1="85" x2="100" y2="115" stroke="white" stroke-width="2" opacity="0.5"/>
+          <!-- Barcode lines -->
+          <rect x="60" y="125" width="4" height="20" fill="white" opacity="0.8"/>
+          <rect x="68" y="125" width="2" height="20" fill="white" opacity="0.8"/>
+          <rect x="74" y="125" width="6" height="20" fill="white" opacity="0.8"/>
+          <rect x="84" y="125" width="3" height="20" fill="white" opacity="0.8"/>
+          <rect x="90" y="125" width="2" height="20" fill="white" opacity="0.8"/>
+          <!-- Check mark -->
+          <circle cx="150" cy="50" r="25" fill="#10b981"/>
+          <path d="M138 50 L147 59 L162 41" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>Inventory Management</h2>
+      <p>Track, manage, and optimize your inventory with our powerful and intuitive system.</p>
+      <div class="feature-list">
+        <div class="feature-item">
+          <mat-icon>check_circle</mat-icon>
+          <span>Real-time stock tracking</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>check_circle</mat-icon>
+          <span>Low stock alerts</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>check_circle</mat-icon>
+          <span>Detailed history logs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Right Side - Login Form -->
+  <div class="auth-form-container">
+    <mat-card class="auth-card">
+      <mat-card-header>
+        <div class="auth-header">
+          <div class="logo-container">
+            <mat-icon class="auth-logo">inventory_2</mat-icon>
+          </div>
+          <h1>Admin Login</h1>
+          <p>Sign in to access the inventory dashboard</p>
+        </div>
+      </mat-card-header>
+      
+      <mat-card-content>
+        @if (errorMessage()) {
+          <div class="error-banner">
+            <mat-icon>error</mat-icon>
+            <span>{{ errorMessage() }}</span>
+          </div>
+        }
+        
+        <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input 
+              matInput 
+              type="email" 
+              name="email"
+              [(ngModel)]="email"
+              required
+              email
+            >
+            <mat-icon matPrefix>email</mat-icon>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input 
+              matInput 
+              [type]="hidePassword() ? 'password' : 'text'"
+              name="password"
+              [(ngModel)]="password"
+              required
+              minlength="6"
+            >
+            <mat-icon matPrefix>lock</mat-icon>
+            <button 
+              type="button" 
+              mat-icon-button 
+              matSuffix 
+              (click)="hidePassword.set(!hidePassword())"
+            >
+              <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+          
+          <button 
+            mat-raised-button 
+            color="primary" 
+            type="submit"
+            class="submit-btn"
+            [disabled]="isLoading() || !loginForm.valid"
+          >
+            @if (isLoading()) {
+              <mat-spinner diameter="20"></mat-spinner>
+            } @else {
+              <span class="btn-content">Sign In <mat-icon>arrow_forward</mat-icon></span>
+            }
+          </button>
+        </form>
+      </mat-card-content>
+      
+      <mat-card-footer>
+        <div class="admin-badge">
+          <mat-icon>admin_panel_settings</mat-icon>
+          <span>Single Admin Access Only</span>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+    
+    <div class="demo-credentials">
+      <mat-icon>info</mat-icon>
+      <span>Credentials: admin@inventory.com / admin123</span>
+    </div>
+  </div>
+</div>

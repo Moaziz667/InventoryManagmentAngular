@@ -1,14 +1,25 @@
+// Import Angular Component decorator
 import { Component } from '@angular/core';
+// Import common Angular directives like *ngIf and *ngFor
 import { CommonModule } from '@angular/common';
+// Import Material card for layout
 import { MatCardModule } from '@angular/material/card';
+// Import Material button
 import { MatButtonModule } from '@angular/material/button';
+// Import Material icon
 import { MatIconModule } from '@angular/material/icon';
+// Import Material expansion panel used for FAQ sections
 import { MatExpansionModule } from '@angular/material/expansion';
+// Import Material divider for separators
 import { MatDividerModule } from '@angular/material/divider';
 
+// Define this class as the help/info page component
 @Component({
+  // HTML tag for this component
   selector: 'app-help',
+  // Standalone component
   standalone: true,
+  // Modules used inside the help template
   imports: [
     CommonModule,
     MatCardModule,
@@ -17,10 +28,13 @@ import { MatDividerModule } from '@angular/material/divider';
     MatExpansionModule,
     MatDividerModule
   ],
+  // External HTML template for help page
   templateUrl: './help.component.html',
+  // External styles for help page
   styleUrl: './help.component.scss'
 })
 export class HelpComponent {
+  // List of Frequently Asked Questions shown on the page
   faqs = [
     {
       question: 'How do I add a new product?',
@@ -56,11 +70,13 @@ export class HelpComponent {
     }
   ];
 
+  // Keyboard shortcuts section shown on the help page
   shortcuts = [
     { keys: 'Ctrl + F', description: 'Focus search bar' },
     { keys: 'Ctrl + R', description: 'Refresh product data' },
     { keys: 'Esc', description: 'Close dialog/modal' }
   ];
 
+  // Contact email address for support
   contactEmail = 'support@inventrack.com';
 }

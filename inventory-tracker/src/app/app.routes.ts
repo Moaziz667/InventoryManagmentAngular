@@ -9,7 +9,7 @@ import { authGuard, guestGuard } from './guards/auth.guard';
  * - authGuard: Only authenticated users (dashboard, inventory, etc.)
  * 
  * Lazy loading: Components load only when route is accessed (improves performance)
- * Animation data: Used for page transition animations
+ * (Animations were removed in the simplified version to keep things easy)
  */
 export const routes: Routes = [
   // ========== PUBLIC ROUTES ==========
@@ -17,8 +17,7 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent),
     canActivate: [guestGuard], // Only show login to non-logged-in users
-    title: 'Login - Inventory Tracker',
-    data: { animation: 'login' }
+    title: 'Login - Inventory Tracker'
   },
 
   // ========== PROTECTED ROUTES (Require Login) ==========
@@ -26,29 +25,13 @@ export const routes: Routes = [
     path: '',
     loadComponent: () => import('./components/dashboard/dashboard.component').then(m => m.DashboardComponent),
     canActivate: [authGuard],
-    title: 'Dashboard - Inventory Tracker',
-    data: { animation: 'dashboard' }
-  },
-  {
-    path: 'history',
-    loadComponent: () => import('./components/stock-history/stock-history.component').then(m => m.StockHistoryComponent),
-    canActivate: [authGuard],
-    title: 'Stock History - Inventory Tracker',
-    data: { animation: 'history' }
-  },
-  {
-    path: 'help',
-    loadComponent: () => import('./components/help/help.component').then(m => m.HelpComponent),
-    canActivate: [authGuard],
-    title: 'Help & Support - Inventory Tracker',
-    data: { animation: 'help' }
+    title: 'Dashboard - Inventory Tracker'
   },
   {
     path: 'products/:id',
     loadComponent: () => import('./components/product-detail/product-detail.component').then(m => m.ProductDetailComponent),
     canActivate: [authGuard],
-    title: 'Product Details - Inventory Tracker',
-    data: { animation: 'productDetail' }
+    title: 'Product Details - Inventory Tracker'
   },
 
   // ========== FALLBACK ROUTE ==========

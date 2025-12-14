@@ -18,58 +18,14 @@
             <mat-icon>dashboard</mat-icon>
             Dashboard
           </a>
-          <a mat-button routerLink="/history" routerLinkActive="active">
-            <mat-icon>timeline</mat-icon>
-            Activity
-          </a>
         </div>
       </div>
       
       <div class="nav-center">
-        <div class="search-bar">
-          <mat-icon>search</mat-icon>
-          <input type="text" placeholder="Search products... (Ctrl+F)" readonly (click)="focusDashboardSearch()">
-          <div class="search-shortcut">
-            <kbd>Ctrl</kbd>
-            <span>+</span>
-            <kbd>F</kbd>
-          </div>
-        </div>
+        <!-- Search shortcuts removed in simplified version -->
       </div>
       
       <div class="nav-right">
-        <!-- Keyboard Shortcuts Help -->
-        <button mat-icon-button [matMenuTriggerFor]="shortcutsMenu" matTooltip="Keyboard Shortcuts" class="nav-icon-btn">
-          <mat-icon>keyboard</mat-icon>
-        </button>
-        <mat-menu #shortcutsMenu="matMenu" class="shortcuts-menu">
-          <div class="shortcuts-header">
-            <mat-icon>keyboard</mat-icon>
-            <span>Keyboard Shortcuts</span>
-          </div>
-          <mat-divider></mat-divider>
-          <div class="shortcuts-list">
-            <div class="shortcut-item">
-              <span class="shortcut-desc">Search Products</span>
-              <div class="shortcut-keys">
-                <kbd>Ctrl</kbd><span>+</span><kbd>F</kbd>
-              </div>
-            </div>
-            <div class="shortcut-item">
-              <span class="shortcut-desc">Refresh Data</span>
-              <div class="shortcut-keys">
-                <kbd>Ctrl</kbd><span>+</span><kbd>R</kbd>
-              </div>
-            </div>
-            <div class="shortcut-item">
-              <span class="shortcut-desc">Close Dialog</span>
-              <div class="shortcut-keys">
-                <kbd>Esc</kbd>
-              </div>
-            </div>
-          </div>
-        </mat-menu>
-        
         <!-- Notifications -->
         <button mat-icon-button [matMenuTriggerFor]="notificationMenu" matTooltip="Notifications" class="nav-icon-btn notification-btn">
           <mat-icon [matBadge]="notificationCount()" matBadgeColor="warn" [matBadgeHidden]="notificationCount() === 0">
@@ -125,11 +81,6 @@
             </div>
           </div>
           <mat-divider></mat-divider>
-          <button mat-menu-item routerLink="/help">
-            <mat-icon>help_outline</mat-icon>
-            <span>Help & Support</span>
-          </button>
-          <mat-divider></mat-divider>
           <button mat-menu-item (click)="logout()" class="logout-btn">
             <mat-icon>logout</mat-icon>
             <span>Logout</span>
@@ -138,8 +89,8 @@
       </div>
     </nav>
 
-    <!-- Main Content with Animation -->
-    <main class="app-main" [@routeAnimations]="getRouteAnimationData()">
+    <!-- Main Content -->
+    <main class="app-main">
       <router-outlet></router-outlet>
     </main>
 
@@ -168,25 +119,11 @@
         <div class="footer-section links-section">
           <h4>Quick Links</h4>
           <a routerLink="/">Dashboard</a>
-          <a routerLink="/history">Stock History</a>
-          <a href="#">Reports</a>
-          <a href="#">Analytics</a>
+          <!-- Extra links removed for simplified version -->
         </div>
         
         <div class="footer-section shortcuts-section">
-          <h4>Shortcuts</h4>
-          <div class="footer-shortcut">
-            <kbd>Ctrl</kbd>+<kbd>F</kbd>
-            <span>Search</span>
-          </div>
-          <div class="footer-shortcut">
-            <kbd>Ctrl</kbd>+<kbd>R</kbd>
-            <span>Refresh</span>
-          </div>
-          <div class="footer-shortcut">
-            <kbd>Esc</kbd>
-            <span>Close Dialog</span>
-          </div>
+          <!-- Keyboard shortcut hints removed in simplified version -->
         </div>
         
         <div class="footer-section info-section">
@@ -219,7 +156,7 @@
     </footer>
   </div>
 } @else {
-  <div class="auth-wrapper" [@routeAnimations]="getRouteAnimationData()">
+  <div class="auth-wrapper">
     <router-outlet></router-outlet>
   </div>
 }

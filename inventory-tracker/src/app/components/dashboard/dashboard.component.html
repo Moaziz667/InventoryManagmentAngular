@@ -7,11 +7,7 @@
         <p class="subtitle">Track and manage your product inventory</p>
       </div>
       <div class="header-actions">
-        <div class="shortcut-hints">
-          <span class="hint"><kbd>Ctrl</kbd>+<kbd>R</kbd> Refresh</span>
-          <span class="hint"><kbd>Ctrl</kbd>+<kbd>F</kbd> Search</span>
-        </div>
-        <button mat-icon-button (click)="refreshProducts()" matTooltip="Refresh (Ctrl+R)">
+        <button mat-icon-button (click)="refreshProducts()" matTooltip="Refresh">
           <mat-icon>refresh</mat-icon>
         </button>
         <button mat-flat-button color="primary" (click)="openCreateModal()">
@@ -77,99 +73,7 @@
     </div>
   </section>
 
-  <!-- Charts Section -->
-  @if (!loading() && !error() && stats().total > 0) {
-    <section class="charts-section">
-      <div class="charts-grid">
-        <!-- Stock Status Chart -->
-        <div class="chart-card">
-          <div class="chart-header">
-            <h3><mat-icon>pie_chart</mat-icon> Stock Status Overview</h3>
-          </div>
-          <div class="chart-body">
-            <div class="donut-chart">
-              <svg viewBox="0 0 42 42" class="donut">
-                <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#f3f4f6" stroke-width="3"></circle>
-                <circle class="donut-segment sufficient" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#10b981" stroke-width="3"
-                  [attr.stroke-dasharray]="(stats().sufficient / stats().total * 100) + ' ' + (100 - stats().sufficient / stats().total * 100)"
-                  stroke-dashoffset="25"></circle>
-                <circle class="donut-segment low" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#f59e0b" stroke-width="3"
-                  [attr.stroke-dasharray]="(stats().low / stats().total * 100) + ' ' + (100 - stats().low / stats().total * 100)"
-                  [attr.stroke-dashoffset]="25 - (stats().sufficient / stats().total * 100)"></circle>
-                <circle class="donut-segment critical" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ef4444" stroke-width="3"
-                  [attr.stroke-dasharray]="(stats().critical / stats().total * 100) + ' ' + (100 - stats().critical / stats().total * 100)"
-                  [attr.stroke-dashoffset]="25 - (stats().sufficient / stats().total * 100) - (stats().low / stats().total * 100)"></circle>
-              </svg>
-              <div class="donut-center">
-                <span class="donut-value">{{ stats().total }}</span>
-                <span class="donut-label">Products</span>
-              </div>
-            </div>
-            <div class="chart-legend">
-              <div class="legend-item">
-                <span class="legend-dot sufficient"></span>
-                <span class="legend-label">In Stock</span>
-                <span class="legend-value">{{ stats().sufficient }}</span>
-              </div>
-              <div class="legend-item">
-                <span class="legend-dot low"></span>
-                <span class="legend-label">Low Stock</span>
-                <span class="legend-value">{{ stats().low }}</span>
-              </div>
-              <div class="legend-item">
-                <span class="legend-dot critical"></span>
-                <span class="legend-label">Critical</span>
-                <span class="legend-value">{{ stats().critical }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Category Distribution Chart -->
-        <div class="chart-card">
-          <div class="chart-header">
-            <h3><mat-icon>category</mat-icon> Products by Category</h3>
-          </div>
-          <div class="chart-body">
-            <div class="bar-chart">
-              @for (item of categoryChartData(); track item.category) {
-                <div class="bar-item">
-                  <div class="bar-label">{{ item.category }}</div>
-                  <div class="bar-container">
-                    <div class="bar-fill" [style.width.%]="item.percentage"></div>
-                  </div>
-                  <div class="bar-value">{{ item.count }}</div>
-                </div>
-              }
-            </div>
-          </div>
-        </div>
-
-        <!-- Top Products by Value -->
-        <div class="chart-card">
-          <div class="chart-header">
-            <h3><mat-icon>trending_up</mat-icon> Top Products by Value</h3>
-          </div>
-          <div class="chart-body">
-            <div class="horizontal-bar-chart">
-              @for (item of topProductsByValue(); track item.name; let i = $index) {
-                <div class="h-bar-item">
-                  <div class="h-bar-rank">{{ i + 1 }}</div>
-                  <div class="h-bar-info">
-                    <div class="h-bar-name">{{ item.name }}</div>
-                    <div class="h-bar-track">
-                      <div class="h-bar-fill" [style.width.%]="(item.value / maxProductValue()) * 100"></div>
-                    </div>
-                  </div>
-                  <div class="h-bar-value">{{ item.value | currency }}</div>
-                </div>
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  }
+  <!-- Charts removed to keep app simple -->
 
   <!-- Filter Bar -->
   <app-filter-bar 
@@ -177,13 +81,7 @@
     (filterChange)="onFilterChange($event)">
   </app-filter-bar>
 
-  <!-- Loading State -->
-  @if (loading()) {
-    <div class="loading-container">
-      <mat-spinner diameter="48"></mat-spinner>
-      <p>Loading products...</p>
-    </div>
-  }
+ 
 
   <!-- Error State -->
   @if (error()) {
@@ -210,21 +108,16 @@
           </button>
         </div>
       } @else {
-        <!-- Products Count & Pagination Info -->
+        <!-- Products Count -->
         <div class="products-header">
           <div class="products-count">
             <mat-icon>grid_view</mat-icon>
-            <span>Showing {{ paginatedProducts().length }} of {{ filteredProducts().length }} products</span>
-          </div>
-          <div class="view-options">
-            <span class="page-info">
-              Page {{ pageIndex() + 1 }} of {{ Math.ceil(filteredProducts().length / pageSize()) }}
-            </span>
+            <span>Showing {{ filteredProducts().length }} products</span>
           </div>
         </div>
         
         <div class="products-grid">
-          @for (product of paginatedProducts(); track product.id) {
+          @for (product of filteredProducts(); track product.id) {
             <app-product-card
               [product]="product"
               (edit)="openEditModal($event)"
@@ -232,21 +125,6 @@
             </app-product-card>
           }
         </div>
-        
-        <!-- Pagination -->
-        @if (filteredProducts().length > pageSizeOptions[0]) {
-          <div class="pagination-wrapper">
-            <mat-paginator
-              [length]="filteredProducts().length"
-              [pageSize]="pageSize()"
-              [pageIndex]="pageIndex()"
-              [pageSizeOptions]="pageSizeOptions"
-              (page)="onPageChange($event)"
-              showFirstLastButtons
-              aria-label="Select page">
-            </mat-paginator>
-          </div>
-        }
       }
     </section>
   }

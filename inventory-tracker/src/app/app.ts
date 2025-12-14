@@ -11,8 +11,8 @@
  * 
  * All pages are rendered inside <router-outlet>
  */
-import { Component, computed, signal, HostListener } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive, Router, ChildrenOutletContexts } from '@angular/router';
+import { Component, computed, signal } from '@angular/core';
+import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -21,7 +21,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatBadgeModule } from '@angular/material/badge';
 import { AuthService } from './services/auth.service';
 import { CommonModule } from '@angular/common';
-import { routeAnimations } from './animations/route-animations';
 
 /**
  * Notification interface for displaying alerts/messages
@@ -50,8 +49,7 @@ interface Notification {
     MatBadgeModule
   ],
   templateUrl: './app.html',
-  styleUrl: './app.scss',
-  animations: [routeAnimations]
+  styleUrl: './app.scss'
 })
 export class App {
   isAuthenticated = computed(() => this.authService.isAuthenticated());
@@ -69,13 +67,8 @@ export class App {
   
   constructor(
     public authService: AuthService,
-    private router: Router,
-    private contexts: ChildrenOutletContexts
+    private router: Router
   ) {}
-  
-  getRouteAnimationData() {
-    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
-  }
   
   logout() {
     this.authService.logout();
@@ -84,32 +77,5 @@ export class App {
   
   clearNotifications() {
     this.notifications.set([]);
-  }
-  
-  focusDashboardSearch() {
-    // Navigate to dashboard and trigger search focus
-    if (this.router.url !== '/') {
-      this.router.navigate(['/']);
-    }
-    // Dispatch custom event for dashboard to focus search
-    setTimeout(() => {
-      window.dispatchEvent(new CustomEvent('focusSearch'));
-    }, 100);
-  }
-  
-  @HostListener('window:keydown', ['$event'])
-  handleKeyboardShortcuts(event: KeyboardEvent) {
-    // Only handle if authenticated
-    if (!this.isAuthenticated()) return;
-    
-    // Ctrl+N - New Product (handled in dashboard)
-    // Ctrl+F - Focus Search
-    if (event.ctrlKey && event.key === 'f') {
-      event.preventDefault();
-      this.focusDashboardSearch();
-    }
-    
-    // Ctrl+R - Refresh (handled in dashboard)
-    // Escape is handled by dialogs automatically
   }
 }

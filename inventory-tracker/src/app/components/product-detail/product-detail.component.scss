@@ -1,0 +1,296 @@
+.detail-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.back-nav {
+  margin-bottom: 24px;
+}
+
+.back-nav button {
+  color: var(--text-secondary);
+}
+
+.back-nav mat-icon {
+  margin-right: 8px;
+}
+
+.loading-container, .not-found {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.loading-container p, .not-found p {
+  color: var(--text-secondary);
+  margin-top: 16px;
+}
+
+.not-found mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: var(--text-secondary);
+}
+
+.not-found h2 {
+  margin: 16px 0 8px;
+  color: var(--text-primary);
+}
+
+.not-found button {
+  margin-top: 20px;
+}
+
+.product-detail {
+  display: grid;
+  gap: 24px;
+}
+
+.main-card {
+  padding: 32px;
+  border-radius: 16px;
+}
+
+.product-header {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.product-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-image mat-icon {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  color: var(--text-secondary);
+}
+
+.product-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.product-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.product-title-row h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.product-title-row mat-chip {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.product-title-row mat-chip.in-stock {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.product-title-row mat-chip.low-stock {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.product-title-row mat-chip.critical {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.sku {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.category mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.description {
+  margin-top: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--surface-color);
+}
+
+.stat-card mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  color: var(--primary-color);
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.actions {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.history-card {
+  margin-top: 8px;
+  padding: 20px 24px;
+  border-radius: 16px;
+}
+
+.history-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-size: 20px;
+  color: var(--text-primary);
+}
+
+.history-card mat-icon {
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+
+.history-table {
+  width: 100%;
+}
+
+.history-table th {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.history-table td {
+  font-size: 14px;
+}
+
+.history-table td.positive {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.history-table td.negative {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.history-table mat-chip.stock-in {
+  background: #dcfce7;
+  color: #15803d;
+  text-transform: capitalize;
+}
+
+.history-table mat-chip.stock-out {
+  background: #fee2e2;
+  color: #b91c1c;
+  text-transform: capitalize;
+}
+
+.history-table mat-chip.adjustment {
+  background: #e0f2fe;
+  color: #0369a1;
+  text-transform: capitalize;
+}
+
+.no-history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  color: var(--text-secondary);
+  gap: 8px;
+}
+
+.no-history mat-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .main-card {
+    padding: 20px;
+  }
+  
+  .product-header {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .product-image {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .product-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
